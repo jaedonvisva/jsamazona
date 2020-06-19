@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECommerce Website</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="grid-container">
+      <header>
+        <div>
+          <button class="ham-menu" onclick="openMenu()">
+            &#9776;
+          </button>
+          <a class="brand" href="./index.html">amazona</a>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href="./cart.html">Cart</a>
+            </li>
+            <li>
+              <a href="./signin.html">Sign-In</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <aside id="aside">
+        <div class="aside-header">
+          <div>SHOP BY CATEGORY</div>
+          <button class="aside-close-button" onclick="closeMenu()">x</button>
+        </div>
+        <div class="aside-body">
+          <ul class="categories">
+            <li>
+              <a href="/category/shirts"
+                >Shirts<span><i class="fa fa-chevron-right"></i></span
+              ></a>
+            </li>
+            <li>
+              <a href="/category/pants"
+                >Pants<span><i class="fa fa-chevron-right"></i></span
+              ></a>
+            </li>
+            <li>
+              <a href="/category/t-shirts"
+                >T-Shirts<span><i class="fa fa-chevron-right"></i></span
+              ></a>
+            </li>
+            <li>
+              <a href="/category/shoes"
+                >Shoes<span><i class="fa fa-chevron-right"></i></span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <main>
+        <div class="result">
+          1-6 of over 100 results for Clothing
+        </div>
+        <div class="container">
+          <div class="sidebar">
+            <div class="sidebar-item">
+              <h3>
+                Department
+              </h3>
+              <ul>
+                <li>
+                  <a href="/category/shirts">Shirts</a>
+                </li>
+                <li>
+                  <a href="/category/shirts">Pants</a>
+                </li>
+                <li>
+                  <a href="/category/t-shirts">T-Shirts</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sidebar-item">
+              <h3>
+                Brand
+              </h3>
+              <ul>
+                <li>
+                  <a href="/brand/nike">Nike</a>
+                </li>
+                <li>
+                  <a href="/brand/adidas">Adidas</a>
+                </li>
+                <li>
+                  <a href="/brand/lacoste">Lacoste</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sidebar-item">
+              <h3>
+                Avg. Customer Review
+              </h3>
+              <ul>
+                <li>
+                  <a href="/rate/4" class="rating">
+                    <span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star-o"></i></span><span> & Up</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/rate/4" class="rating">
+                    <span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star-o"></i></span
+                    ><span><i class="fa fa-star-o"></i></span><span> & Up</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/rate/4" class="rating">
+                    <span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star-o"></i></span
+                    ><span><i class="fa fa-star-o"></i></span
+                    ><span><i class="fa fa-star-o"></i></span><span> & Up</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/rate/4" class="rating">
+                    <span><i class="fa fa-star"></i></span
+                    ><span><i class="fa fa-star-o"></i></span
+                    ><span><i class="fa fa-star-o"></i></span
+                    ><span><i class="fa fa-star-o"></i></span
+                    ><span><i class="fa fa-star-o"></i></span><span> & Up</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="content">
+            <ul class="products">
+              <li>
+                <div class="product">
+                  <img
+                    class="product-image"
+                    src="images/product-1.jpg"
+                    alt="Cotton Fit Shirt"
+                  />
+                  <div class="product-name">
+                    <a href="product.html">
+                      Red Kap Men's Industrial Work Shirt, Regular Fit, Short
+                      Sleeve
+                    </a>
+                  </div>
+                  <div class="product-brand">Lacoste</div>
+                  <div class="product-price"><span>$</span>59</div>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i
+                    ><i class="fa fa-star"></i><i class="fa fa-star-o"></i
+                    ><i class="fa fa-star-o"></i> (53 reviews)
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product">
+                  <img
+                    class="product-image"
+                    src="images/product-2.jpg"
+                    alt="Classic Shirt"
+                  />
+                  <div class="product-name">
+                    <a href="product.html"
+                      >Tommy Hilfiger Men's Short Sleeve Polo Shirt in Classic
+                      Fit</a
+                    >
+                  </div>
+                  <div class="product-brand">Nike</div>
+                  <div class="product-price"><span>$</span>79</div>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i
+                    ><i class="fa fa-star"></i><i class="fa fa-star-o"></i
+                    ><i class="fa fa-star-o"></i> (50 reviews)
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product">
+                  <img
+                    class="product-image"
+                    src="images/product-3.jpg"
+                    alt="Slim Shirt"
+                  />
+                  <div class="product-name">
+                    <a href="product.html">Slim Shirt</a>
+                  </div>
+                  <div class="product-brand">Lacoste</div>
+                  <div class="product-price"><span>$</span>90</div>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i
+                    ><i class="fa fa-star"></i><i class="fa fa-star-o"></i
+                    ><i class="fa fa-star-o"></i> (27 reviews)
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product">
+                  <img
+                    class="product-image"
+                    src="images/product-4.jpg"
+                    alt="Cotton Pants"
+                  />
+                  <div class="product-name">
+                    <a href="product.html">Cotton Pants</a>
+                  </div>
+                  <div class="product-brand">Nike</div>
+                  <div class="product-price"><span>$</span>145</div>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i
+                    ><i class="fa fa-star"></i><i class="fa fa-star-o"></i
+                    ><i class="fa fa-star-o"></i> (14 reviews)
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product">
+                  <img
+                    class="product-image"
+                    src="images/product-5.jpg"
+                    alt="Slim Pants"
+                  />
+                  <div class="product-name">
+                    <a href="product.html">Slim Pants</a>
+                  </div>
+                  <div class="product-brand">Adidas</div>
+                  <div class="product-price"><span>$</span>78</div>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i
+                    ><i class="fa fa-star"></i><i class="fa fa-star-o"></i
+                    ><i class="fa fa-star-o"></i> (28 reviews)
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="product">
+                  <img
+                    class="product-image"
+                    src="images/product-6.jpg"
+                    alt="Fit Pants"
+                  />
+                  <div class="product-name">
+                    <a href="product.html">Fit Pants</a>
+                  </div>
+                  <div class="product-brand">Lacoste</div>
+                  <div class="product-price"><span>$</span>65</div>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i
+                    ><i class="fa fa-star"></i><i class="fa fa-star-o"></i
+                    ><i class="fa fa-star-o"></i> (17 reviews)
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+      <footer>
+        All right is reserved. @2020
+      </footer>
+    </div>
+    <script>
+      function openMenu() {
+        document.getElementById("aside").classList.add("open");
+      }
+      function closeMenu() {
+        document.getElementById("aside").classList.remove("open");
+      }
+    </script>
+  </body>
+</html>
