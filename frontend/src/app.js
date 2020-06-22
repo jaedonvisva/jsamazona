@@ -5,9 +5,11 @@ import HomeScreen from './screens/HomeScreen.js';
 import CartScreen from './screens/CartScreen.js';
 import { parseRequestUrl } from './utils.js';
 import Error404 from './screens/Error404.js';
+import ProductScreen from './screens/ProductScreen.js';
 
 const routes = {
   '/': HomeScreen,
+  '/product/:id': ProductScreen,
   '/cart': CartScreen,
   '/cart/:id': CartScreen,
 };

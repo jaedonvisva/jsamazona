@@ -1,7 +1,7 @@
 import express from 'express';
-import products from './data';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import products from './data';
 
 const app = express();
 app.use(cors());
@@ -20,6 +20,9 @@ mongoose.connect(
 
 app.get('/api/products', (req, res) => {
   res.send(products);
+});
+app.get('/api/products/:id', (req, res) => {
+  res.send(products.find((x) => x._id === req.params.id));
 });
 
 app.listen(5000, () => {
