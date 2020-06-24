@@ -16,7 +16,7 @@ const routes = {
 const router = async () => {
   const header = document.getElementById('header-container');
   const aside = document.getElementById('aside-container');
-  const content = document.getElementById('content-container');
+  const main = document.getElementById('main-container');
   const footer = document.getElementById('footer-container');
   header.innerHTML = Header.render();
   Header.after_render();
@@ -27,11 +27,11 @@ const router = async () => {
   // content.innerHTML = `<div>Will be done later</div>`;
   const request = parseRequestUrl();
   const parsedUrl =
-    (request.resource ? '/' + request.resource : '/') +
+    (request.resource ? `/${request.resource}` : '/') +
     (request.id ? '/:id' : '') +
-    (request.verb ? '/' + request.verb : '');
+    (request.verb ? `/${request.verb}` : '');
   const screen = routes[parsedUrl] || Error404;
-  content.innerHTML = await screen.render();
+  main.innerHTML = await screen.render();
   screen.after_render();
 };
 

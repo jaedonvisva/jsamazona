@@ -3,39 +3,67 @@ import { getProduct } from '../api.js';
 import Rating from '../components/Rating.js';
 
 const ProductScreen = {
-  after_render: () => {},
+  after_render: () => {
+    const request = parseRequestUrl();
+    document.getElementById('add-button').addEventListener('click', () => {
+      document.location.hash = `/cart/${request.id}`;
+    });
+  },
   render: async () => {
     const request = parseRequestUrl();
     const product = await getProduct(request.id);
     return `
-    <div class="product-page">
-    <li>
-      <h1>${product.name}</h1>
-      <div>
-        ${Rating.render({
-          value: product.rating,
-          text: product.numReviews + ' Reviews',
-        })}
+    <div>
+      <div class="back-to-result">
+        <a href="/#/">Back to result</a>
       </div>
-      <p>Price: $${product.price}</p>
-      <p>Description: ${product.description}</p>
-      <li>Qty:
-        <select>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-      </li>
-      </li>
-      <img class="product-image" src="${product.image}" alt="${product.name}" />
-    </div>`;
+      <div class="details">
+          <div class="details-image">
+            <img src="${product.image}" alt="${product.name}" />
+          </div>
+          <div class="details-info">
+            <ul>
+              <li>
+                <h1>${product.name}</h1>
+              </li>
+              <li>
+                ${Rating.render({
+                  value: product.rating,
+                  text: `${product.numReviews} reviews`,
+                })}
+              </li>
+              <li>
+                Price: <strong>$${product.price}</strong>
+              </li>
+              <li>
+                Description:
+                <div>
+                  ${product.description}
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="details-action">
+                <ul>
+                  <li>
+                    Price: $${product.price}
+                  </li>
+                  <li>
+                    Status: 
+                    ${
+                      product.countInStock > 0
+                        ? `<span class="success">In Stock</span>`
+                        : `<span class="error">Unavailable</span>`
+                    }
+                  </li>
+                  <li>
+                    <button id="add-button" class="primary fw">Add to Cart</button>
+                  </li>
+                </ul>
+          </div>
+      </div>
+    </div>
+        `;
   },
 };
 export default ProductScreen;

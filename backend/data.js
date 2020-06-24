@@ -1,13 +1,14 @@
 const products = [
   {
     _id: 'p1',
-    name: 'Fit Shirt',
+    name: 'Hiskywin Full Zip Running Shirts Thermal Workout',
     image: '/images/product-1.jpg',
     description: 'It is cool',
     price: 100,
     brand: 'Nike',
     rating: 3.5,
     numReviews: 123,
+    countInStock: 5,
   },
   {
     _id: 'p2',
@@ -18,6 +19,7 @@ const products = [
     brand: 'Nike',
     rating: 4.5,
     numReviews: 123,
+    countInStock: 15,
   },
   {
     _id: 'p3',
@@ -28,6 +30,7 @@ const products = [
     brand: 'Nike',
     rating: 2.3,
     numReviews: 123,
+    countInStock: 10,
   },
   {
     _id: 'p4',
@@ -38,6 +41,7 @@ const products = [
     brand: 'Nike',
     rating: 4.9,
     numReviews: 123,
+    countInStock: 0,
   },
   {
     _id: 'p5',
@@ -48,6 +52,7 @@ const products = [
     brand: 'Nike',
     rating: 4.3,
     numReviews: 123,
+    countInStock: 0,
   },
   {
     _id: 'p6',
@@ -58,6 +63,7 @@ const products = [
     brand: 'Nike',
     rating: 3.8,
     numReviews: 123,
+    countInStock: 0,
   },
 ];
 

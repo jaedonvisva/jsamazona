@@ -38,6 +38,22 @@ a {
 a:hover {
   color: #c45500;
 }
+button {
+  font: 1.6rem Helvetica;
+  padding: 1rem;
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+button:hover {
+  border: 0.1rem #404040 solid;
+}
+button.primary {
+  background-color: #f0c040;
+}
+.fw {
+  width: 100%;
+}
 header a {
   color: #ffffff;
   font-weight: bold;
@@ -107,6 +123,7 @@ aside.open {
 main {
   grid-area: main;
   z-index: 0;
+  padding: 1rem;
 }
 .result {
   padding: 1rem;
@@ -212,10 +229,50 @@ footer {
   color: #ffb901;
 }
 
-/* product page */
-.product-page {
-  padding-left: 2rem;
+/* Product page */
+.back-to-result {
+  margin-bottom: 1rem;
 }
-.product-page li {
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+}
+.details-image {
+  flex: 2 1 60rem;
+}
+.details-info {
+  flex: 1 1 30rem;
+}
+.details-action {
+  flex: 1 1 30rem;
+}
+.details img {
+  max-width: 60rem;
+  width: 100%;
+}
+.details ul {
   list-style-type: none;
+  padding: 0;
+}
+.details-info h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+.details li {
+  margin-bottom: 1rem;
+}
+.details-action {
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  background-color: #f8f8f8;
+  padding: 1rem;
+}
+.success {
+  color: #00c000;
+}
+.error {
+  color: #c00000;
 }
