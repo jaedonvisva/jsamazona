@@ -16,9 +16,9 @@ ul {
 .grid-container {
   display: grid;
   grid-template-areas:
-    "header"
-    "main"
-    "footer";
+    'header'
+    'main'
+    'footer';
   grid-template-rows: 5rem 1fr 5rem;
   grid-template-columns: 1fr;
   height: 100%;
@@ -210,4 +210,12 @@ footer {
 
 .product-rating i {
   color: #ffb901;
+}
+
+/* product page */
+.product-page {
+  padding-left: 2rem;
+}
+.product-page li {
+  list-style-type: none;
 }
