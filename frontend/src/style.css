@@ -274,6 +274,14 @@ footer {
   background-color: #f8f8f8;
   padding: 1rem;
 }
+.reviews {
+  list-style-type: none;
+  padding: 0;
+}
+.reviews li {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
 .success {
   color: #00c000;
 }

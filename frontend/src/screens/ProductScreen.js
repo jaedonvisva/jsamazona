@@ -61,6 +61,35 @@ const ProductScreen = {
                   </li>
                 </ul>
           </div>
+          <div>
+            <h2>Reviews</h2>
+            <ul class="reviews">
+              <li>
+                <div><b>Jeff A.</b></div>
+                <div class="rating-container">
+                  ${Rating.render({ value: product.rating })}
+                  <div>
+                    2020-02-01
+                  </div>
+                </div>
+                <div>
+                  Very Nice! Would Recommend!
+                </div>
+              </li>
+              <li>
+                <div><b>John A.</b></div>
+                <div class="rating-container">
+                  ${Rating.render({ value: product.rating })}
+                  <div>
+                    2020-02-03
+                  </div>
+                </div>
+                <div>
+                  Amazing Product!
+                </div>
+              </li>
+            </ul>
+          </div>
       </div>
     </div>
         `;
