@@ -60,37 +60,27 @@ const ProductScreen = {
                     <button id="add-button" class="primary fw">Add to Cart</button>
                   </li>
                 </ul>
-          </div>
-          <div>
+          </div>          
+      </div>
+      <div>
             <h2>Reviews</h2>
+            ${!product.reviews.length ? `<div>There is no review.</div>` : ''}
             <ul class="reviews">
-              <li>
-                <div><b>Jeff A.</b></div>
-                <div class="rating-container">
-                  ${Rating.render({ value: product.rating })}
-                  <div>
-                    2020-02-01
-                  </div>
-                </div>
-                <div>
-                  Very Nice! Would Recommend!
-                </div>
-              </li>
-              <li>
-                <div><b>John A.</b></div>
-                <div class="rating-container">
-                  ${Rating.render({ value: product.rating })}
-                  <div>
-                    2020-02-03
-                  </div>
-                </div>
-                <div>
-                  Amazing Product!
-                </div>
-              </li>
+              ${product.reviews
+                .map(
+                  (review) => `
+                <li>
+                  <div><b>${review.name}</b></div>
+                  <div>${Rating.render({ value: review.rating })}</div>
+                  <div>${review.createdAt}</div>
+                  <div>${review.comment}</div>
+                </li>
+                `
+                )
+                .join('\n')}
+              
             </ul>
           </div>
-      </div>
     </div>
         `;
   },

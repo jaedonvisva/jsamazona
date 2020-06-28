@@ -9,6 +9,29 @@ const products = [
     rating: 3.5,
     numReviews: 123,
     countInStock: 5,
+    reviews: [
+      {
+        _id: 'r1',
+        name: 'Bob',
+        rating: 4,
+        comment: 'nice one.',
+        createdAt: '2020-06-06',
+      },
+      {
+        _id: 'r2',
+        name: 'Joe',
+        rating: 5,
+        comment: 'great product',
+        createdAt: '2020-06-07',
+      },
+      {
+        _id: 'r3',
+        name: 'Sara',
+        rating: 2,
+        comment: 'not bad',
+        createdAt: '2020-06-08',
+      },
+    ],
   },
   {
     _id: 'p2',
@@ -20,6 +43,7 @@ const products = [
     rating: 4.5,
     numReviews: 123,
     countInStock: 15,
+    reviews: [],
   },
   {
     _id: 'p3',
@@ -31,6 +55,15 @@ const products = [
     rating: 2.3,
     numReviews: 123,
     countInStock: 10,
+    reviews: [
+      {
+        _id: 'r3',
+        name: 'Sara',
+        rating: 2,
+        comment: 'not bad',
+        createdAt: '2020-06-08',
+      },
+    ],
   },
   {
     _id: 'p4',
@@ -42,6 +75,7 @@ const products = [
     rating: 4.9,
     numReviews: 123,
     countInStock: 0,
+    reviews: [],
   },
   {
     _id: 'p5',
@@ -53,6 +87,7 @@ const products = [
     rating: 4.3,
     numReviews: 123,
     countInStock: 0,
+    reviews: [],
   },
   {
     _id: 'p6',
@@ -64,6 +99,7 @@ const products = [
     rating: 3.8,
     numReviews: 123,
     countInStock: 0,
+    reviews: [],
   },
 ];
 

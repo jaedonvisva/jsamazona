@@ -38,6 +38,7 @@ a {
 a:hover {
   color: #c45500;
 }
+select,
 button {
   font: 1.6rem Helvetica;
   padding: 1rem;
@@ -45,6 +46,7 @@ button {
   border-radius: 0.5rem;
   cursor: pointer;
 }
+select:hover,
 button:hover {
   border: 0.1rem #404040 solid;
 }
@@ -277,10 +279,14 @@ footer {
 .reviews {
   list-style-type: none;
   padding: 0;
+  margin-left: 1rem;
 }
 .reviews li {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
+}
+.reviews li > div {
+  margin-top: 0.5rem;
 }
 .success {
   color: #00c000;
