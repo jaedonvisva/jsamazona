@@ -7,6 +7,7 @@ import { parseRequestUrl } from './utils.js';
 import Error404 from './screens/Error404.js';
 import ProductScreen from './screens/ProductScreen.js';
 import SigninScreen from './screens/SigninScreen.js';
+import RegisterScreen from './screens/RegisterScreen.js';
 
 const routes = {
   '/': HomeScreen,
@@ -14,6 +15,7 @@ const routes = {
   '/cart': CartScreen,
   '/cart/:id': CartScreen,
   '/signin': SigninScreen,
+  '/register': RegisterScreen,
 };
 const router = async () => {
   const header = document.getElementById('header-container');
