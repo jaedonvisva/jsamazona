@@ -6,12 +6,14 @@ import CartScreen from './screens/CartScreen.js';
 import { parseRequestUrl } from './utils.js';
 import Error404 from './screens/Error404.js';
 import ProductScreen from './screens/ProductScreen.js';
+import SigninScreen from './screens/SigninScreen.js';
 
 const routes = {
   '/': HomeScreen,
   '/product/:id': ProductScreen,
   '/cart': CartScreen,
   '/cart/:id': CartScreen,
+  '/signin': SigninScreen,
 };
 const router = async () => {
   const header = document.getElementById('header-container');

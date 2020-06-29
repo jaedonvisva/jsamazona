@@ -19,9 +19,34 @@ const addToCart = (item, forceUpdate = false) => {
     rerender(CartScreen);
   }
 };
+const removeFromCart = (id) => {
+  setCartItems(getCartItems().filter((x) => x.product !== id));
+  if (id === parseRequestUrl().id) {
+    document.location.hash = '/cart';
+  } else {
+    rerender(CartScreen);
+  }
+};
 
 const CartScreen = {
-  after_render: () => {},
+  after_render: () => {
+    const qtySelects = document.getElementsByClassName('qty-select');
+    Array.from(qtySelects).forEach((qtySelect) => {
+      qtySelect.addEventListener('change', (e) => {
+        const item = getCartItems().find((x) => x.product === qtySelect.id);
+        addToCart({ ...item, qty: Number(e.target.value) }, true);
+      });
+    });
+    const deleteButtons = document.getElementsByClassName('delete-button');
+    Array.from(deleteButtons).forEach((deleteButton) => {
+      deleteButton.addEventListener('click', () => {
+        removeFromCart(deleteButton.id);
+      });
+    });
+    document.getElementById('checkout-button').addEventListener('click', () => {
+      document.location.hash = '/signin';
+    });
+  },
   render: async () => {
     const request = parseRequestUrl();
     if (request.id) {
@@ -48,7 +73,7 @@ const CartScreen = {
         </li>
         ${
           !cartItems.length
-            ? `<li>Cart is empty. <a href="/#/">Go Shopping</a></li>`
+            ? `<li><div>Cart is empty. <a href="/#/">Go Shopping</a></div></li>`
             : cartItems
                 .map(
                   (item) => `
@@ -92,7 +117,12 @@ const CartScreen = {
       </ul>
       <div class="cart-action">
         <h3>
-          Subtotal : $100
+          Subtotal (${cartItems.reduce(
+            (a, c) => a + c.qty,
+            0
+          )} items): $${cartItems.reduce((a, c) => {
+      return c.price * c.qty + a;
+    }, 0)}
         </h3>
         <button id="checkout-button" class="primary fw">
           Proceed to Checkout

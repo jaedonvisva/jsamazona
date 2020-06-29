@@ -12,7 +12,7 @@ const Header = {
               <a href="/#/cart">Cart</a>
             </li>
             <li>
-              <a href="./signin.html">Sign-In</a><!-- need to change link -->
+              <a href="/#/signin">Sign-In</a><!-- need to change link -->
             </li>
           </ul>
         </div>`;
