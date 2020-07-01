@@ -1,5 +1,22 @@
+import { signin } from '../api.js';
+
 const SigninScreen = {
-  after_render: () => {},
+  after_render: () => {
+    document
+      .getElementById('signin-form')
+      .addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = await signin({
+          email: document.getElementById('email').value,
+          password: document.getElementById('password').value,
+        });
+        if (data.error) {
+          alert(data.error);
+        } else {
+          document.location.hash = '/';
+        }
+      });
+  },
   render: () => {
     return `
     <div class="form-container">
