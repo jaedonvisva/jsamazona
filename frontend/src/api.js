@@ -36,3 +36,22 @@ export const signin = async ({ email, password }) => {
     return { error };
   }
 };
+
+export const createProduct = async () => {
+  try {
+    const response = await fetch(`${apiUrl}/api/products`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
+    if (response.status !== 201) {
+      throw new Error(json.message);
+    }
+    return json;
+  } catch (err) {
+    console.log('Error in create product', err.message);
+    return { error: err.message };
+  }
+};
