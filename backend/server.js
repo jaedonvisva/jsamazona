@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import path from 'path';
 import products from './data';
 import userRoute from './routes/userRoute';
 
@@ -25,6 +26,11 @@ app.get('/api/products', (req, res) => {
 });
 app.get('/api/products/:id', (req, res) => {
   res.send(products.find((x) => x._id === req.params.id));
+});
+/* Serve Frontend */
+app.use(express.static(path.join(__dirname, '/../frontend')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../frontend/index.html'));
 });
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

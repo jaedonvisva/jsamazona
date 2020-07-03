@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 const Header = {
   render: () => {
     return `<div>
@@ -5,6 +7,11 @@ const Header = {
       &#9776;
     </button>
     <a class="brand" href="/#">amazona</a>
+  </div>
+  <div>
+  <a href="#">
+    Today : ${dayjs().format('YYYY-MM-DD')}
+    </a>
   </div>
   <div>
           <ul>
