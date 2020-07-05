@@ -1,4 +1,5 @@
 import { signin } from '../api.js';
+import { setUserInfo } from '../utils.js';
 
 const SigninScreen = {
   after_render: () => {
@@ -13,6 +14,7 @@ const SigninScreen = {
         if (data.error) {
           alert(data.error);
         } else {
+          setUserInfo(data);
           document.location.hash = '/';
         }
       });

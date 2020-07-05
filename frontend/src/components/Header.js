@@ -1,7 +1,9 @@
 import dayjs from 'dayjs';
+import { getUserInfo } from '../utils.js';
 
 const Header = {
   render: () => {
+    const { name } = getUserInfo();
     return `<div>
     <button class="ham-menu" id="aside-open-button">
       &#9776;
@@ -14,15 +16,21 @@ const Header = {
     </a>
   </div>
   <div>
-          <ul>
-            <li>
-              <a href="/#/cart">Cart</a>
-            </li>
-            <li>
-              <a href="/#/signin">Sign-In</a><!-- need to change link -->
-            </li>
-          </ul>
-        </div>`;
+    <ul>
+    ${
+      name
+        ? `
+    <li><a href="/#/profile">${name}</a></li>
+    <li><a href="/#/cart">Cart</a></li>
+    `
+        : `
+    <li><a href="/#/cart">Cart</a></li>
+    <li><a href="/#/signin">Sign-In</a></li>
+    `
+    }
+    
+    </ul>
+  </div>`;
   },
   after_render: () => {
     document

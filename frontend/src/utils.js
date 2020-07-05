@@ -13,3 +13,23 @@ export const rerender = async (component, areaName = 'main') => {
   area.innerHTML = await component.render();
   await component.after_render();
 };
+
+export const getUserInfo = () => {
+  console.log(localStorage.getItem('userInfo'));
+  const userInfo = localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : { name: '', email: '' };
+  return userInfo;
+};
+export const setUserInfo = ({
+  _id = '',
+  name = '',
+  email = '',
+  isAdmin = false,
+  token = '',
+}) => {
+  localStorage.setItem(
+    'userInfo',
+    JSON.stringify({ _id, name, email, isAdmin, token })
+  );
+};

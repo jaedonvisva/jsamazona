@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
 import User from '../models/userModel';
+import { getToken } from '../utils';
 
 const router = express.Router();
 router.post(
@@ -14,7 +15,12 @@ router.post(
       signedinUser &&
       bcrypt.compareSync(req.body.password, signedinUser.password)
     ) {
-      res.send({ email: signedinUser.email });
+      res.send({
+        name: signedinUser.name,
+        email: signedinUser.email,
+        isAdmin: signedinUser.isAdmin,
+        token: getToken(signedinUser),
+      });
     } else {
       res.status(401).send({ message: 'Invalid User or Password!' });
     }
