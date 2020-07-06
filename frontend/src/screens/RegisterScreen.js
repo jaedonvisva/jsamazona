@@ -1,9 +1,29 @@
+import { setUserInfo } from '../utils';
+import { register } from '../api';
+
 const RegisterScreen = {
-  after_render: () => {},
+  after_render: () => {
+    document
+      .getElementById('register-form')
+      .addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = await register({
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          password: document.getElementById('password').value,
+        });
+        if (data.error) {
+          alert(data.error);
+        } else {
+          setUserInfo(data);
+          document.location.hash = '/';
+        }
+      });
+  },
   render: () => {
     return `
       <div class="form-container">
-        <form id="signin-form">
+        <form id="register-form">
           <ul class="form">
             <li>
               <h1>Register</h1>
@@ -22,7 +42,7 @@ const RegisterScreen = {
             </li>
             <li>
               <label for="password">Confirm Password</label>
-              <input type="password" id="password" name="password" />
+              <input type="password" id="password_confirm" name="password_confirm" />
             </li>
             <li>
               <button type="submit" class="primary">Register</button>

@@ -55,3 +55,22 @@ export const createProduct = async () => {
     return { error: err.message };
   }
 };
+export const register = async ({ name, email, password }) => {
+  try {
+    const response = await fetch(`${apiUrl}/api/users/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
+    const json = await response.json();
+    if (response.status !== 201) {
+      throw new Error(json.message);
+    }
+    return json;
+  } catch (err) {
+    console.log('Error in register', err.message);
+    return { error: err.message };
+  }
+};
