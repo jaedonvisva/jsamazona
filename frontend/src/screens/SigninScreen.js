@@ -1,5 +1,6 @@
-import { signin } from '../api.js';
-import { setUserInfo } from '../utils.js';
+import { signin } from '../api';
+import { setUserInfo, getUserInfo } from '../localStorage';
+import { redirectUser } from '../utils';
 
 const SigninScreen = {
   after_render: () => {
@@ -15,11 +16,15 @@ const SigninScreen = {
           alert(data.error);
         } else {
           setUserInfo(data);
-          document.location.hash = '/';
+          redirectUser();
         }
       });
   },
   render: () => {
+    const userInfo = getUserInfo();
+    if (userInfo.email) {
+      redirectUser();
+    }
     return `
     <div class="form-container">
       <form id="signin-form">

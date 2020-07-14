@@ -2,7 +2,7 @@ const Aside = {
   render: () => {
     return `<div class="aside-header">
     <div>SHOP BY CATEGORY</div>
-    <button id="aside-close">x</button>
+    <button class="aside-close-button" id="aside-close">x</button>
   </div>
   <div class="aside-body">
     <ul class="categories">
@@ -30,6 +30,7 @@ const Aside = {
   </div>`;
   },
   after_render: () => {
+    document.getElementById('aside-container').classList.remove('open');
     document.getElementById('aside-close').addEventListener('click', () => {
       document.getElementById('aside-container').classList.remove('open');
     });

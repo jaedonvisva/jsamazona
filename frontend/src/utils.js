@@ -1,3 +1,5 @@
+import { getCartItems } from './localStorage';
+
 export const parseRequestUrl = () => {
   const url = document.location.hash.slice(1).toLowerCase() || '/';
   const r = url.split('/');
@@ -9,27 +11,23 @@ export const parseRequestUrl = () => {
 };
 
 export const rerender = async (component, areaName = 'main') => {
-  const area = document.getElementById(`${areaName}-container`);
+  const area = document.getElemEentById(`${areaName}-container`);
   area.innerHTML = await component.render();
   await component.after_render();
 };
 
-export const getUserInfo = () => {
-  console.log(localStorage.getItem('userInfo'));
-  const userInfo = localStorage.getItem('userInfo')
-    ? JSON.parse(localStorage.getItem('userInfo'))
-    : { name: '', email: '' };
-  return userInfo;
+export const showLoading = () => {
+  document.getElementById('loading-overlay').classList.add('active');
 };
-export const setUserInfo = ({
-  _id = '',
-  name = '',
-  email = '',
-  isAdmin = false,
-  token = '',
-}) => {
-  localStorage.setItem(
-    'userInfo',
-    JSON.stringify({ _id, name, email, isAdmin, token })
-  );
+export const hideLoading = () => {
+  document.getElementById('loading-overlay').classList.remove('active');
+};
+
+export const redirectUser = () => {
+  const cartItems = getCartItems();
+  if (cartItems.length > 0) {
+    document.location.hash = '/checkout';
+  } else {
+    document.location.hash = '/';
+  }
 };

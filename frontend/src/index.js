@@ -3,11 +3,12 @@ import Aside from './components/Aside.js';
 import Footer from './components/Footer.js';
 import HomeScreen from './screens/HomeScreen.js';
 import CartScreen from './screens/CartScreen.js';
-import { parseRequestUrl } from './utils.js';
+import { parseRequestUrl, showLoading, hideLoading } from './utils.js';
 import Error404 from './screens/Error404.js';
 import ProductScreen from './screens/ProductScreen.js';
 import SigninScreen from './screens/SigninScreen.js';
 import RegisterScreen from './screens/RegisterScreen.js';
+import SignoutScreen from './screens/SignoutScreen.js';
 
 const routes = {
   '/': HomeScreen,
@@ -16,19 +17,20 @@ const routes = {
   '/cart/:id': CartScreen,
   '/signin': SigninScreen,
   '/register': RegisterScreen,
+  '/signout': SignoutScreen,
 };
 const router = async () => {
+  showLoading();
   const header = document.getElementById('header-container');
   const aside = document.getElementById('aside-container');
   const main = document.getElementById('main-container');
   const footer = document.getElementById('footer-container');
-  header.innerHTML = Header.render();
-  Header.after_render();
-  aside.innerHTML = Aside.render();
-  Aside.after_render();
-  footer.innerHTML = Footer.render();
-  Footer.after_render();
-  // content.innerHTML = `<div>Will be done later</div>`;
+  header.innerHTML = await Header.render();
+  await Header.after_render();
+  aside.innerHTML = await Aside.render();
+  await Aside.after_render();
+  footer.innerHTML = await Footer.render();
+  await Footer.after_render();
   const request = parseRequestUrl();
   const parsedUrl =
     (request.resource ? `/${request.resource}` : '/') +
@@ -36,7 +38,9 @@ const router = async () => {
     (request.verb ? `/${request.verb}` : '');
   const screen = routes[parsedUrl] || Error404;
   main.innerHTML = await screen.render();
-  screen.after_render();
+  await screen.after_render();
+  // await new Promise((resolve) => setTimeout(() => resolve(), 1000));
+  hideLoading();
 };
 
 window.addEventListener('hashchange', router);

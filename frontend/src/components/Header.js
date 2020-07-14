@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { getUserInfo } from '../utils.js';
+import { getUserInfo } from '../localStorage.js';
 
 const Header = {
   render: () => {
@@ -20,7 +20,15 @@ const Header = {
     ${
       name
         ? `
-    <li><a href="/#/profile">${name}</a></li>
+    <li>
+      <div class="dropdown">
+        <a href="/#/profile">${name}</a>
+        <ul class="dropdown-content">
+          <li><a href="/#/profile">Profile</a></li>
+          <li><a href="/#/signout">Sign Out</a></li>
+        </ul>
+      </div>
+    </li>
     <li><a href="/#/cart">Cart</a></li>
     `
         : `

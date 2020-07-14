@@ -1,4 +1,4 @@
-import { setUserInfo } from '../utils';
+import { setUserInfo } from '../localStorage';
 import { register } from '../api';
 
 const RegisterScreen = {

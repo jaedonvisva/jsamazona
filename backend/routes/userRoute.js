@@ -32,8 +32,8 @@ router.get(
     try {
       const user = new User({
         name: 'admin',
-        email: 'admin@gmail.com',
-        password: bcrypt.hashSync('123', process.env.BCRYPT_SALT),
+        email: 'admin@example.com',
+        password: bcrypt.hashSync('123', 12),
         isAdmin: true,
       });
       const createdUser = await user.save();
@@ -50,7 +50,7 @@ router.post(
     const user = new User({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
+      password: bcrypt.hashSync(req.body.password, 12),
     });
     const newUser = await user.save();
     if (newUser) {

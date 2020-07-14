@@ -1,5 +1,23 @@
 import { apiUrl } from './config.js';
 
+export const getProducts = async () => {
+  try {
+    const response = await fetch(`${apiUrl}/api/products`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
+    if (response.status !== 200) {
+      throw new Error(json.message);
+    }
+    return json;
+  } catch (err) {
+    console.log('Error in getProducts', err);
+    return { error: err.message };
+  }
+};
+
 export const getProduct = async (productId) => {
   try {
     const response = await fetch(`${apiUrl}/api/products/${productId}`, {
