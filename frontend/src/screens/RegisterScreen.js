@@ -38,7 +38,7 @@ const RegisterScreen = {
             </li>
             <li>
               <label for="password">Password</label>
-              <input type="password" id="password" name="password" />
+              <input type="password" id="password" name="password"  pattern="(?=.*[a-z])(?=.*[0-9]).{5,}"/>
             </li>
             <li>
               <label for="password">Confirm Password</label>
