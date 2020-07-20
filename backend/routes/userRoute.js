@@ -1,3 +1,4 @@
+/* eslint-disable prefer-promise-reject-errors */
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
@@ -47,14 +48,28 @@ router.get(
 
 router.post(
   '/register',
-  [body('email').isEmail(), body('name').isLength({ min: 3 })],
+  [
+    body('email').isEmail(),
+    body('name')
+      .isLength({ min: 3 })
+      .withMessage('must be at least 3 chars long'),
+    body('email').custom(async (value) => {
+      const user = await User.findOne({ email: value });
+      if (user) {
+        return Promise.reject('already in use');
+      }
+    }),
+  ],
   expressAsyncHandler(async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       // error
-      res
-        .status(400)
-        .send({ message: 'Data is not valid.', errors: errors.array() });
+      res.status(400).send({
+        message: errors
+          .array()
+          .reduce((a, c) => `${a} <p>${c.param} ${c.msg}</p>`, ''),
+        errors: errors.array(),
+      });
     } else {
       const user = new User({
         name: req.body.name,

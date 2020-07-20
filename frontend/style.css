@@ -424,3 +424,7 @@ footer {
 .overlay > div > * {
   margin: 2rem;
 }
+
+.overlay p {
+  text-transform: capitalize;
+}
