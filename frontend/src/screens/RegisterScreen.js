@@ -1,5 +1,6 @@
 import { setUserInfo } from '../localStorage';
 import { register } from '../api';
+import { showMessage } from '../utils';
 
 const RegisterScreen = {
   after_render: () => {
@@ -7,23 +8,58 @@ const RegisterScreen = {
       .getElementById('register-form')
       .addEventListener('submit', async (e) => {
         e.preventDefault();
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const passwordConfirm = document.getElementById('password-confirm');
+        // Frontend Validations
+        if (!name.value) {
+          showMessage('Enter Your Name', () => {
+            name.focus();
+          });
+          return;
+        }
+        if (!email.value) {
+          showMessage('Enter Your Email', () => {
+            email.focus();
+          });
+          return;
+        }
+        if (!password.value) {
+          showMessage('Enter Password', () => {
+            password.focus();
+          });
+          return;
+        }
+        if (!passwordConfirm.value) {
+          showMessage('Enter Confirm Password', () => {
+            passwordConfirm.focus();
+          });
+          return;
+        }
+        if (password.value !== passwordConfirm.value) {
+          showMessage('Password Should Be Equal To Confirm Password', () => {
+            password.value = '';
+            passwordConfirm.value = '';
+            password.focus();
+          });
+          return;
+        }
+        // Call Register API
         const data = await register({
-          name: document.getElementById('name').value,
-          email: document.getElementById('email').value,
-          password: document.getElementById('password').value,
+          name: name.value,
+          email: email.value,
+          password: password.value,
         });
+
+        // Backend Validations
         if (data.error) {
-          alert(data.error);
-        } else if (
-          document.getElementById('password') !=
-          document.getElementById('password_confirm')
-        ) {
-          alert('not match');
-          console.log('dont match');
+          showMessage(data.error);
         } else {
-          console.log('saved');
           setUserInfo(data);
-          document.location.hash = '/';
+          showMessage('You registered successfully.', () => {
+            document.location.hash = '/';
+          });
         }
       });
   },
@@ -45,11 +81,11 @@ const RegisterScreen = {
             </li>
             <li>
               <label for="password">Password</label>
-              <input type="password" id="password" name="password"  pattern="(?=.*[a-z])(?=.*[0-9]).{5,}"/>
+              <input type="password" id="password" name="password"  />
             </li>
             <li>
               <label for="password">Confirm Password</label>
-              <input type="password" id="password_confirm" name="password_confirm" />
+              <input type="password" id="password-confirm" name="password-confirm" />
             </li>
             <li>
               <button type="submit" class="primary">Register</button>

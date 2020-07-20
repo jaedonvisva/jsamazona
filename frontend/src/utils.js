@@ -23,6 +23,25 @@ export const hideLoading = () => {
   document.getElementById('loading-overlay').classList.remove('active');
 };
 
+export const showMessage = (message, callback) => {
+  const messageBox = document.getElementById('message-overlay');
+  messageBox.innerHTML = `
+  <div>
+    <div id="message-overlay-content">${message}</div>
+    <button id="message-overlay-close-button">OK</button>
+  </div>
+  `;
+  messageBox.classList.add('active');
+  const closeButton = document.getElementById('message-overlay-close-button');
+  closeButton.focus();
+  closeButton.addEventListener('click', () => {
+    messageBox.classList.remove('active');
+    if (callback) {
+      callback();
+    }
+  });
+};
+
 export const redirectUser = () => {
   const cartItems = getCartItems();
   if (cartItems.length > 0) {
