@@ -14,7 +14,14 @@ const RegisterScreen = {
         });
         if (data.error) {
           alert(data.error);
+        } else if (
+          document.getElementById('password') !=
+          document.getElementById('password_confirm')
+        ) {
+          alert('not match');
+          console.log('dont match');
         } else {
+          console.log('saved');
           setUserInfo(data);
           document.location.hash = '/';
         }
