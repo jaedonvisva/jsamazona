@@ -9,6 +9,7 @@ import { getToken } from '../utils';
 const router = express.Router();
 router.post(
   '/signin',
+  [body('email').isEmail()],
   expressAsyncHandler(async (req, res) => {
     const signedinUser = await User.findOne({
       email: req.body.email,
