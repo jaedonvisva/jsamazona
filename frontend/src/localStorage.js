@@ -8,7 +8,14 @@ export const getCartItems = () => {
 export const setCartItems = (cartItems) => {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
 };
-
+export const setShipping = (shipping) => {
+  localStorage.setItem('shipping', JSON.stringify(shipping));
+};
+export const getShipping = () => {
+  return localStorage.getItem('shipping')
+    ? JSON.parse(localStorage.getItem('shipping'))
+    : { address: '', city: '', country: '', postalCode: '' };
+};
 export const getUserInfo = () => {
   console.log(localStorage.getItem('userInfo'));
   const userInfo = localStorage.getItem('userInfo')

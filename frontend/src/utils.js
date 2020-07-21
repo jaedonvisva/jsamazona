@@ -11,7 +11,7 @@ export const parseRequestUrl = () => {
 };
 
 export const rerender = async (component, areaName = 'main') => {
-  const area = document.getElemEentById(`${areaName}-container`);
+  const area = document.getElementById(`${areaName}-container`);
   area.innerHTML = await component.render();
   await component.after_render();
 };
@@ -45,7 +45,7 @@ export const showMessage = (message, callback) => {
 export const redirectUser = () => {
   const cartItems = getCartItems();
   if (cartItems.length > 0) {
-    document.location.hash = '/checkout';
+    document.location.hash = '/shipping';
   } else {
     document.location.hash = '/';
   }

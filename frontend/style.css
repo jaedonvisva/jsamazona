@@ -428,3 +428,20 @@ footer {
 .overlay p {
   text-transform: capitalize;
 }
+/* Checkout Steps */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: 1rem auto;
+}
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  padding-top: 1rem;
+  flex: 1;
+}
+.checkout-steps > div.active {
+  border-top: 0.3rem #f08000 solid;
+  color: #f08000;
+}
