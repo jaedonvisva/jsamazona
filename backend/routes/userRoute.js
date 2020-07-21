@@ -9,8 +9,23 @@ import { getToken } from '../utils';
 const router = express.Router();
 router.post(
   '/signin',
-  [body('email').isEmail()],
+  [
+    body('email').isEmail().withMessage('must be an email'),
+    body('password')
+      .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{5,}$/, 'i')
+      .withMessage(
+        'must be at least 5 chars long including lowercase chars, uppercase chars and numbers and '
+      ),
+  ],
   expressAsyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).send({
+        message: errors
+          .array()
+          .reduce((a, c) => `${a} <p>${c.param} ${c.msg}</p>`, ''),
+      });
+    }
     const signedinUser = await User.findOne({
       email: req.body.email,
     });
@@ -36,7 +51,7 @@ router.get(
       const user = new User({
         name: 'admin',
         email: 'admin@example.com',
-        password: bcrypt.hashSync('123', 12),
+        password: bcrypt.hashSync('Aa123', 12),
         isAdmin: true,
       });
       const createdUser = await user.save();
@@ -50,10 +65,15 @@ router.get(
 router.post(
   '/register',
   [
-    body('email').isEmail(),
     body('name')
       .isLength({ min: 3 })
       .withMessage('must be at least 3 chars long'),
+    body('password')
+      .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{5,}$/, 'i')
+      .withMessage(
+        'must be at least 5 chars long including lowercase chars, uppercase chars and numbers and '
+      ),
+    body('email').isEmail(),
     body('email').custom(async (value) => {
       const user = await User.findOne({ email: value });
       if (user) {

@@ -1,9 +1,14 @@
 import Rating from '../components/Rating.js';
 import { getProducts } from '../api.js';
+import { showMessage } from '../utils';
 
 const HomeScreen = {
   render: async () => {
     const products = await getProducts();
+    if (products.error) {
+      showMessage(`Server Error: ${products.error}`);
+      return `<div></div>`;
+    }
 
     return `<div>
     <ul class='products'>

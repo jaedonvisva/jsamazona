@@ -1,6 +1,6 @@
 import { signin } from '../api';
 import { setUserInfo, getUserInfo } from '../localStorage';
-import { redirectUser } from '../utils';
+import { redirectUser, showMessage } from '../utils';
 
 const SigninScreen = {
   after_render: () => {
@@ -13,7 +13,7 @@ const SigninScreen = {
           password: document.getElementById('password').value,
         });
         if (data.error) {
-          alert(data.error);
+          showMessage(data.error);
         } else {
           setUserInfo(data);
           redirectUser();

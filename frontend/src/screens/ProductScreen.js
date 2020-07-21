@@ -1,17 +1,24 @@
-import { parseRequestUrl } from '../utils.js';
+import { parseRequestUrl, showMessage } from '../utils.js';
 import { getProduct } from '../api.js';
 import Rating from '../components/Rating.js';
 
 const ProductScreen = {
   after_render: () => {
     const request = parseRequestUrl();
-    document.getElementById('add-button').addEventListener('click', () => {
-      document.location.hash = `/cart/${request.id}`;
-    });
+    const addButton = document.getElementById('add-button');
+    if (addButton) {
+      addButton.addEventListener('click', () => {
+        document.location.hash = `/cart/${request.id}`;
+      });
+    }
   },
   render: async () => {
     const request = parseRequestUrl();
     const product = await getProduct(request.id);
+    if (product.error) {
+      showMessage(`Server Error: ${product.error}`);
+      return `<div></div>`;
+    }
     return `
     <div>
       <div class="back-to-result">
