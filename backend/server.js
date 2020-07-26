@@ -4,7 +4,8 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
 import products from './data';
-import userRoute from './routes/userRoute';
+import userRouter from './routers/userRouter';
+import productRouter from './routers/productRouter';
 
 const app = express();
 app.use(cors());
@@ -20,13 +21,14 @@ mongoose.connect(
     }
   }
 );
-app.use('/api/users', userRoute);
-app.get('/api/products', (req, res) => {
-  res.send(products);
-});
-app.get('/api/products/:id', (req, res) => {
-  res.send(products.find((x) => x._id === req.params.id));
-});
+app.use('/api/users', userRouter);
+app.use('/api/products', productRouter);
+// app.get('/api/products', (req, res) => {
+//   res.send(products);
+// });
+// app.get('/api/products/:id', (req, res) => {
+//   res.send(products.find((x) => x._id === req.params.id));
+// });
 /* Serve Frontend */
 app.use(express.static(path.join(__dirname, '/../frontend')));
 app.get('*', (req, res) => {

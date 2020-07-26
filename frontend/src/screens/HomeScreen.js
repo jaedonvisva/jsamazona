@@ -12,9 +12,12 @@ const HomeScreen = {
 
     return `<div>
     <ul class='products'>
-    ${products
-      .map(
-        (product) => `
+    ${
+      products.length === 0
+        ? `<div>No Product Found.</div>`
+        : products
+            .map(
+              (product) => `
         <li> 
         <div class="product">
         <a href="/#/product/${product._id}">
@@ -38,8 +41,9 @@ const HomeScreen = {
         </div>
       </div>
       </li>`
-      )
-      .join('\n')}
+            )
+            .join('\n')
+    }
     </ul>
     </div>`;
   },
