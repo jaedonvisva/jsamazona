@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { apiUrl } from './config.js';
+import { getUserInfo } from './localStorage.js';
 
 export const createProduct = async () => {
   try {
@@ -108,6 +109,25 @@ export const register = async ({ name, email, password }) => {
     return json;
   } catch (err) {
     console.log('Error in register', err.message);
+    return { error: err.message };
+  }
+};
+
+export const deleteProduct = async (productId) => {
+  try {
+    const response = await fetch(`${apiUrl}/api/products/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
+    if (response.status !== 200) {
+      throw new Error(json.message);
+    }
+    return json;
+  } catch (err) {
+    console.log('Error in delete product', err.message);
     return { error: err.message };
   }
 };

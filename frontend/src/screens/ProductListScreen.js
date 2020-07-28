@@ -1,4 +1,5 @@
-import { createProduct, getProducts } from '../api';
+import { createProduct, getProducts, deleteProduct } from '../api';
+import { showLoading, hideLoading, rerender } from '../utils.js';
 
 const ProductListScreen = {
   after_render: () => {
@@ -7,7 +8,20 @@ const ProductListScreen = {
       .addEventListener('click', async () => {
         const data = await createProduct();
         alert(data.product._id);
+        rerender(ProductListScreen);
       });
+    const deleteButtons = document.getElementsByClassName('delete-button');
+    Array.from(deleteButtons).forEach((deleteButton) => {
+      deleteButton.addEventListener('click', async () => {
+        if (confirm('Are you sure to delete this product?')) {
+          showLoading();
+          console.log(deleteButton.id);
+          await deleteProduct(deleteButton.id);
+          hideLoading();
+          rerender(ProductListScreen);
+        }
+      });
+    });
   },
   render: async () => {
     const products = await getProducts();
@@ -37,8 +51,8 @@ const ProductListScreen = {
               <td>${product.category}</td>
               <td>${product.brand}</td>
               <td>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button id="${product._id}" class="edit-button">Edit</button> 
+                <button id="${product._id}" class="delete-button">Delete</button>
               </td>
             </tr>
             `
