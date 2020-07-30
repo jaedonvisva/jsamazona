@@ -401,11 +401,9 @@ footer {
 .dropdown-content {
   display: none;
   position: absolute;
-  right: 0;
   list-style-type: none;
   padding: 1rem;
   background-color: #203040;
-  margin: 0;
   z-index: 1;
   width: 10rem;
 }

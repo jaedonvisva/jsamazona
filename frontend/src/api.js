@@ -20,6 +20,27 @@ export const createProduct = async () => {
   }
 };
 
+export const updateProduct = async (product) => {
+  const { token } = getUserInfo();
+  try {
+    const response = await axios({
+      url: `${apiUrl}/api/products/${product._id}`,
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: product,
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return { error: err.response.data.message || err.message };
+  }
+};
+
 export const getProducts = async () => {
   try {
     const response = await fetch(`${apiUrl}/api/products`, {
