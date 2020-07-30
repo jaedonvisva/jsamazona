@@ -1,6 +1,5 @@
 import CheckoutSteps from '../components/CheckoutSteps';
 import { setPayment, getPayment } from '../localStorage';
-import { showMessage } from '../utils';
 
 const PaymentScreen = {
   after_render: () => {
@@ -12,7 +11,7 @@ const PaymentScreen = {
       setPayment({
         paymentMethod,
       });
-      showMessage('Payment Saved');
+      document.location.hash = '/placeorder';
     });
   },
   render: () => {
@@ -38,7 +37,7 @@ const PaymentScreen = {
               <input type="radio" name="payment-method" id="stripe" value="stripe" 
                 ${payment.paymentMethod === 'stripe' ? 'checked' : ''}   />
               <label for="stripe">Stripe</label>
-            </div>   
+            </div>
           <li>
                     
             <button type="submit" class="primary">Continue</button>
