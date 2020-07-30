@@ -11,10 +11,13 @@ import RegisterScreen from './screens/RegisterScreen.js';
 import SignoutScreen from './screens/SignoutScreen.js';
 import ShippingScreen from './screens/ShippingScreen.js';
 import ProductListScreen from './screens/ProductListScreen.js';
+import DashboardScreen from './screens/DashboardScreen.js';
+import ProductEditScreen from './screens/ProductEditScreen.js';
 
 const routes = {
   '/': HomeScreen,
   '/product/:id': ProductScreen,
+  '/product/:id/edit': ProductEditScreen,
   '/cart': CartScreen,
   '/cart/:id': CartScreen,
   '/signin': SigninScreen,
@@ -22,6 +25,7 @@ const routes = {
   '/signout': SignoutScreen,
   '/shipping': ShippingScreen,
   '/productlist': ProductListScreen,
+  '/dashboard': DashboardScreen,
 };
 const router = async () => {
   showLoading();

@@ -13,6 +13,26 @@ ul {
   padding: 0;
   margin: 0;
 }
+table {
+  width: 100%;
+}
+th {
+  text-align: left;
+}
+tbody > tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+td {
+  padding: 0.5rem;
+}
+td.actions {
+  width: 10rem;
+}
+td.actions button {
+  padding: 0.5rem;
+  font-size: 1.3rem;
+}
+
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -36,7 +56,7 @@ a {
   color: #444444;
 }
 a:hover {
-  color: #c45500;
+  color: #c04000;
 }
 button {
   cursor: pointer;
@@ -442,6 +462,43 @@ footer {
   flex: 1;
 }
 .checkout-steps > div.active {
-  border-top: 0.3rem #f08000 solid;
-  color: #f08000;
+  border-top: 0.3rem #c04000 solid;
+  color: #c04000;
+}
+/* Dashboard */
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  margin: -1rem;
+}
+.dashboard h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+.dashboard-menu {
+  flex: 1 1 20rem;
+  background-color: #f0f0f0;
+}
+.dashboard-menu ul {
+  padding: 0;
+}
+.dashboard-menu a {
+  display: flex;
+  padding: 1rem;
+  padding-left: 2rem;
+  justify-content: space-between;
+}
+.dashboard-menu a:hover {
+  background-color: #c0c0c0;
+}
+.dashboard-menu li.selected a {
+  color: #c04000;
+  background-color: #c0c0c0;
+}
+
+.dashboard-content {
+  flex: 4 1 80rem;
+  padding: 1rem;
 }

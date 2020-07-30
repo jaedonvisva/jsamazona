@@ -12,6 +12,18 @@ productRouter.get(
   })
 );
 
+productRouter.get(
+  '/:id',
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      res.send(product);
+    } else {
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+  })
+);
+
 productRouter.post(
   '/',
   expressAsyncHandler(async (req, res) => {

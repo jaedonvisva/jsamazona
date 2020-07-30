@@ -3,7 +3,7 @@ import { getUserInfo } from '../localStorage.js';
 
 const Header = {
   render: () => {
-    const { name } = getUserInfo();
+    const { name, isAdmin } = getUserInfo();
     return `<div>
     <button class="ham-menu" id="aside-open-button">
       &#9776;
@@ -30,6 +30,7 @@ const Header = {
       </div>
     </li>
     <li><a href="/#/cart">Cart</a></li>
+    ${isAdmin ? `<li><a href="/#/dashboard">Dashboard</a></li>` : ''}
     `
         : `
     <li><a href="/#/cart">Cart</a></li>
