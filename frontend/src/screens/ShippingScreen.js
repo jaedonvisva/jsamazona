@@ -12,7 +12,7 @@ const ShippingScreen = {
         postalCode: document.getElementById('postal-code').value,
         country: document.getElementById('country').value,
       });
-      showMessage('Shipping Address Saved');
+      document.location.hash = '/payment';
     });
   },
   render: () => {

@@ -374,10 +374,12 @@ footer {
 /* Form */
 .form-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
+  margin-top: 3rem;
 }
+
 .form {
   display: flex;
   flex-direction: column;

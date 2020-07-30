@@ -16,6 +16,14 @@ export const getShipping = () => {
     ? JSON.parse(localStorage.getItem('shipping'))
     : { address: '', city: '', country: '', postalCode: '' };
 };
+export const setPayment = (payment) => {
+  localStorage.setItem('payment', JSON.stringify(payment));
+};
+export const getPayment = () => {
+  return localStorage.getItem('payment')
+    ? JSON.parse(localStorage.getItem('payment'))
+    : { paymentMethod: 'paypal' };
+};
 export const getUserInfo = () => {
   console.log(localStorage.getItem('userInfo'));
   const userInfo = localStorage.getItem('userInfo')

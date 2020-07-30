@@ -13,6 +13,7 @@ import ShippingScreen from './screens/ShippingScreen.js';
 import ProductListScreen from './screens/ProductListScreen.js';
 import DashboardScreen from './screens/DashboardScreen.js';
 import ProductEditScreen from './screens/ProductEditScreen.js';
+import PaymentScreen from './screens/PaymentScreen.js';
 
 const routes = {
   '/': HomeScreen,
@@ -24,6 +25,7 @@ const routes = {
   '/register': RegisterScreen,
   '/signout': SignoutScreen,
   '/shipping': ShippingScreen,
+  '/payment': PaymentScreen,
   '/productlist': ProductListScreen,
   '/dashboard': DashboardScreen,
 };
