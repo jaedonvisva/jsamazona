@@ -33,6 +33,12 @@ const PlaceOrderScreen = {
     const order = convertCartToOrder();
     return `
     <div class="cart">
+      <div class='cart-list'>
+        Shipping: ${order.shipping.address}
+      </div>
+      <div class='cart-list'>
+        Payment: ${order.payment.paymentMethod}
+      </div>
       <ul class="cart-list">
         <li>
           <h3>Shopping Cart</h3>
@@ -55,24 +61,7 @@ const PlaceOrderScreen = {
                     <a href="/#/product/${item.product}">${item.name}</a>
                   </div>
                   <div>
-                    Qty:
-                    <select class="qty-select" value="${item.qty}" id="${
-                    item.product
-                  }">
-                      ${[...Array(item.countInStock).keys()]
-                        .map((x) =>
-                          item.qty === x + 1
-                            ? `<option value="${x + 1}" selected>${
-                                x + 1
-                              }</option>`
-                            : `<option value="${x + 1}">${x + 1}</option>`
-                        )
-                        .join('\n')}
-                    </select>
-                    <button type="button" class="delete-button"
-                      id="${item.product}">
-                      Delete
-                    </button>
+                    Qty: ${item.qty}
                   </div>
               </div>
               <div class="cart-price">$${item.price}</div>
@@ -83,7 +72,7 @@ const PlaceOrderScreen = {
       </ul>
       <div class="cart-action">
         <h3>
-          Subtotal (${order.orderItems.reduce(
+          Order Summary (${order.orderItems.reduce(
             (a, c) => a + c.qty,
             0
           )} items): $${order.orderItems.reduce((a, c) => {
