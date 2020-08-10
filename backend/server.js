@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import products from './data';
 import userRouter from './routers/userRouter';
+import orderRouter from './routers/orderRouter';
 import productRouter from './routers/productRouter';
 
 const app = express();
@@ -22,6 +23,7 @@ mongoose.connect(
   }
 );
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
 app.use('/api/products', productRouter);
 // app.get('/api/products', (req, res) => {
 //   res.send(products);

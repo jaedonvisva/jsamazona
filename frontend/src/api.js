@@ -2,6 +2,27 @@ import axios from 'axios';
 import { apiUrl } from './config.js';
 import { getUserInfo } from './localStorage.js';
 
+export const createOrder = async (order) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await axios({
+      url: `${apiUrl}/api/orders`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: order,
+    });
+    if (response.statusText !== 'Created') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return { error: err.message };
+  }
+};
+
 export const createProduct = async () => {
   try {
     const response = await axios({

@@ -502,3 +502,48 @@ footer {
   flex: 4 1 80rem;
   padding: 1rem;
 }
+/* Place Order */
+.placeorder {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: space-between;
+}
+.placeorder-info {
+  flex: 3 1 60rem;
+}
+.placeorder-info .cart-list-container {
+  padding: 0;
+}
+.placeorder-info li h2 {
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  padding: 1rem;
+  margin: 1rem;
+}
+.placeorder-info > div:first-child {
+  margin-top: 0;
+}
+
+.placeorder-action {
+  flex: 1 1 20rem;
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  padding: 1rem;
+}
+.placeorder-action > ul {
+  padding: 0;
+  list-style-type: none;
+}
+.placeorder-action li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.placeorder-action .total {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c04000;
+}
