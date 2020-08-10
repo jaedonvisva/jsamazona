@@ -80,6 +80,26 @@ export const getProducts = async () => {
   }
 };
 
+export const getOrder = async (orderId) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await fetch(`${apiUrl}/api/orders/${orderId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const json = await response.json();
+    if (response.status !== 200) {
+      throw new Error(json.message);
+    }
+    return json;
+  } catch (err) {
+    console.log('Error in getOrder', err);
+    return { error: err.message };
+  }
+};
+
 export const getProduct = async (productId) => {
   try {
     const response = await fetch(`${apiUrl}/api/products/${productId}`, {
