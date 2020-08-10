@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
 import { body, validationResult } from 'express-validator';
 import User from '../models/userModel';
-import { getToken } from '../utils';
+import { getToken, isAuth } from '../utils';
 
 const router = express.Router();
 router.post(
@@ -34,6 +34,7 @@ router.post(
       bcrypt.compareSync(req.body.password, signedinUser.password)
     ) {
       res.send({
+        _id: signedinUser._id,
         name: signedinUser.name,
         email: signedinUser.email,
         isAdmin: signedinUser.isAdmin,
@@ -59,6 +60,25 @@ router.get(
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
+  })
+);
+
+router.put(
+  '/:id',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.password = req.body.password || user.password;
+    const updatedUser = await user.save();
+    res.send({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: getToken(updatedUser),
+    });
   })
 );
 
@@ -100,7 +120,7 @@ router.post(
       const newUser = await user.save();
       if (newUser) {
         res.status(201).send({
-          _id: newUser.id,
+          _id: newUser._id,
           name: newUser.name,
           email: newUser.email,
           isAdmin: newUser.isAdmin,

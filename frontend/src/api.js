@@ -137,24 +137,6 @@ export const signin = async ({ email, password }) => {
   }
 };
 
-// export const createProduct = async () => {
-//   try {
-//     const response = await fetch(`${apiUrl}/api/products`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     });
-//     const json = await response.json();
-//     if (response.status !== 201) {
-//       throw new Error(json.message);
-//     }
-//     return json;
-//   } catch (err) {
-//     console.log('Error in create product', err.message);
-//     return { error: err.message };
-//   }
-// };
 export const register = async ({ name, email, password }) => {
   try {
     const response = await fetch(`${apiUrl}/api/users/register`, {
@@ -174,7 +156,32 @@ export const register = async ({ name, email, password }) => {
     return { error: err.message };
   }
 };
-
+export const updateProfile = async ({ name, email, password }) => {
+  try {
+    const { _id, token } = getUserInfo();
+    console.log(getUserInfo());
+    const response = await axios({
+      url: `${apiUrl}/api/users/${_id}`,
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        name,
+        email,
+        password,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    console.log(err.response);
+    return { error: err.response ? err.response.data.message : err.message };
+  }
+};
 export const deleteProduct = async (productId) => {
   try {
     const response = await fetch(`${apiUrl}/api/products/${productId}`, {
