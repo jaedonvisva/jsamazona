@@ -1,6 +1,6 @@
 import { getUserInfo, setUserInfo } from '../localStorage';
 import { showLoading, hideLoading, showMessage } from '../utils';
-import { updateProfile } from '../api';
+import { updateProfile, getMyOrders } from '../api';
 
 const ProfileScreen = {
   after_render: () => {
@@ -30,6 +30,8 @@ const ProfileScreen = {
   },
   render: async () => {
     const { name, email } = getUserInfo();
+    const orders = await getMyOrders();
+    //
     if (!name) {
       document.location.hash = '/signin';
     }
@@ -65,7 +67,41 @@ const ProfileScreen = {
         </div>
       </div>
       <div class="profile-orders">
-
+      <h2>Order History </h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ORDER ID</th>
+              <th>DATE</th>
+              <th>TOTAL</th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${
+              orders.length === 0
+                ? `<tr><td colspan="6">No order found!</td></tr>`
+                : orders
+                    .map(
+                      (order) => `
+              <tr>
+                <td>${order._id}</td>
+                <td>${order.createdAt}</td>
+                <td>${order.totalPrice}</td>
+                <td>${order.isPaid}</td>
+                <td>${order.isDelivered}</td>
+                <td>
+                  <a href="/#/order/${order._id}">DETAILS</a>
+                </td> 
+              </tr>
+              `
+                    )
+                    .join('\n')
+            }
+          </tbody>
+        </table>
       </div>
     </div>`;
   },

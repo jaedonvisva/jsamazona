@@ -156,6 +156,46 @@ export const register = async ({ name, email, password }) => {
     return { error: err.message };
   }
 };
+export const getOrders = async () => {
+  const { token } = getUserInfo();
+  try {
+    const response = await axios({
+      url: `${apiUrl}/api/orders`,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return err.response ? err.response.data.message : err.message;
+  }
+};
+
+export const getMyOrders = async () => {
+  const { token } = getUserInfo();
+  try {
+    const response = await axios({
+      url: `${apiUrl}/api/orders/mine`,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return err.response ? err.response.data.message : err.message;
+  }
+};
+
 export const updateProfile = async ({ name, email, password }) => {
   try {
     const { _id, token } = getUserInfo();
