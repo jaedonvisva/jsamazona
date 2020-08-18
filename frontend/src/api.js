@@ -2,6 +2,26 @@ import axios from 'axios';
 import { apiUrl } from './config.js';
 import { getUserInfo } from './localStorage.js';
 
+export const deleteOrder = async (orderId) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await axios({
+      url: `${apiUrl}/api/orders/${orderId}`,
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return { error: err.message };
+  }
+};
+
 export const createOrder = async (order) => {
   try {
     const { token } = getUserInfo();
@@ -13,6 +33,27 @@ export const createOrder = async (order) => {
         Authorization: `Bearer ${token}`,
       },
       data: order,
+    });
+    if (response.statusText !== 'Created') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    return { error: err.message };
+  }
+};
+
+export const createReview = async (productId, review) => {
+  try {
+    const { token } = getUserInfo();
+    const response = await axios({
+      url: `${apiUrl}/api/products/${productId}/reviews`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: review,
     });
     if (response.statusText !== 'Created') {
       throw new Error(response.data.message);

@@ -63,7 +63,8 @@ button {
 }
 input,
 select,
-button {
+button,
+textarea {
   font: 1.6rem Helvetica;
   padding: 1rem;
   border: 0.1rem #808080 solid;

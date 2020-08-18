@@ -1,9 +1,31 @@
 import { getUserInfo, setUserInfo } from '../localStorage';
-import { showLoading, hideLoading, showMessage } from '../utils';
-import { updateProfile, getMyOrders } from '../api';
+import { showLoading, hideLoading, showMessage, rerender } from '../utils';
+import { updateProfile, getMyOrders, deleteOrder } from '../api';
 
 const ProfileScreen = {
   after_render: () => {
+    const deleteButtons = document.getElementsByClassName('delete-button');
+    Array.from(deleteButtons).forEach((deleteButton) => {
+      deleteButton.addEventListener('click', async () => {
+        if (confirm('Are you sure?')) {
+          showLoading();
+          const result = await deleteOrder(deleteButton.id);
+          hideLoading();
+          if (result.error) {
+            showMessage('Error in deletetion');
+          } else {
+            showMessage('Deleted Successfully');
+          }
+          rerender(ProfileScreen);
+        }
+      });
+    });
+    const detailsButtons = document.getElementsByClassName('details-button');
+    Array.from(detailsButtons).forEach((detailsButton) => {
+      detailsButton.addEventListener('click', async () => {
+        document.location.hash = `/order/${detailsButton.id}`;
+      });
+    });
     document
       .getElementById('profile-form')
       .addEventListener('submit', async (e) => {
@@ -93,7 +115,8 @@ const ProfileScreen = {
                 <td>${order.isPaid}</td>
                 <td>${order.isDelivered}</td>
                 <td>
-                  <a href="/#/order/${order._id}">DETAILS</a>
+                  <button class="details-button" id="${order._id}">DETAILS</button>
+                  <button class="delete-button" id="${order._id}">DELETE</button>
                 </td> 
               </tr>
               `

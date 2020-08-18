@@ -50,6 +50,8 @@ const OrderScreen = {
     <div>
       <div class="placeorder">
         <div class="placeorder-info">
+        
+        <h1>Order ${order._id}</h1>
           <div>
             <h2>Shipping</h2>
             <p>
